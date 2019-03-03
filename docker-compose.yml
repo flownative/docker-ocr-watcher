@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+
+  ocr-watcher:
+    image: robertlemke/ocr-watcher
+    container_name: ocr_watcher
+    volumes:
+      - ./examples/input:/data/input
+      - ./examples/output:/data/output
