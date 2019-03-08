@@ -13,20 +13,20 @@ do
 
             echo "Starting ocr for ${pathAndFilename}"
 
-            filenamePrefix=$(echo ${filename} | grep -oE [^._-]+ | head -1)
+            filenamePrefix=$(echo "${filename}" | grep -oE [^._-]+ | head -1)
 
             ocrmypdf -l deu+eng --sidecar "/tmp/ocr/${filename}.txt" "${pathAndFilename}" "/tmp/ocr/${filename}.pdf"
 
-            documentNumber=$(head -n 1 /tmp/ocr/${filename}.txt | grep -E ^\s*[0-9]{7}\s*$)
+            documentNumber=$(head -n 1 "/tmp/ocr/${filename}.txt" | grep -E ^\s*[0-9]{7}\s*$)
             if [[ -z "${documentNumber}" ]]; then
                 targetFilename=${filename}
             else
                 targetFilename=${filenamePrefix}-${documentNumber}.pdf
             fi
 
-            mv -f /tmp/ocr/${filename}.pdf /data/output/${targetFilename}
-            mv ${pathAndFilename} /data/input/--${filename}
-            rm /tmp/ocr/${filename}.txt
+            mv -f "/tmp/ocr/${filename}.pdf" "/data/output/${targetFilename}"
+            mv "${pathAndFilename}" "/data/input/--${filename}"
+            rm "/tmp/ocr/${filename}.txt"
 
             echo "Finished ocr, result is ${targetFilename}"
         done
