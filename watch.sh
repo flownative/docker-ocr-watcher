@@ -7,13 +7,13 @@ echo "Starting OCR watcher ..."
 while true
 do
     (ls /data/input | grep '.pdf$' | grep -v '^--') | \
-        while read pathAndFilename; do
+        while read filename; do
+            pathAndFilename=/data/input/${filename}
             fileExtension="${pathAndFilename##*.}"
 
             if [[ "$fileExtension" == "pdf" ]]; then
                 echo "Starting ocr for ${pathAndFilename}"
 
-                filename=$(basename ${pathAndFilename})
                 filenamePrefix=$(echo ${filename} | grep -oE [^._-]+ | head -1)
 
                 ocrmypdf -l deu+eng --sidecar /tmp/ocr/${filename}.txt ${pathAndFilename} /tmp/ocr/${filename}.pdf
