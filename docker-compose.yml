@@ -3,8 +3,9 @@ version: '3.3'
 services:
 
   ocr-watcher:
-    image: robertlemke/ocr-watcher
+    image: flownative/ocr-watcher
     container_name: ocr_watcher
     volumes:
-      - ./examples/input:/data/input
-      - ./examples/output:/data/output
+      - ./data/input:/data/input
+      - ./data/output:/data/output
+    restart: always
