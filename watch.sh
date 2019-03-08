@@ -6,7 +6,7 @@ echo "Starting OCR watcher ..."
 
 while true
 do
-    (find /data/input -regex '.*\/[^-]*\.pdf') | \
+    (ls /data/input | grep '.pdf$' | grep -v '^--') | \
         while read pathAndFilename; do
             fileExtension="${pathAndFilename##*.}"
 
