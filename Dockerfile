@@ -1,20 +1,18 @@
-FROM registry.gitlab.com/flownative/docker/base:1
+FROM flownative/base:2
 MAINTAINER Robert Lemke <robert@flownative.com>
 
-# tesseract-ocr: see https://github.com/tesseract-ocr/tesserac
-# ocrmypdf: see https://github.com/jbarlow83/OCRmyPDF
+# tesseract-ocr: see https://github.com/tesseract-ocr/tesseract
+#                and https://tesseract-ocr.github.io/tessdoc/Home.html
+# ocrmypdf:      see https://github.com/jbarlow83/OCRmyPDF
 
-RUN add-apt-repository -y ppa:alex-p/tesseract-ocr \
-    && apt-get update \
-    && apt-get install -y \
-        software-properties-common \
-        ocrmypdf \
-        tesseract-ocr \
-        tesseract-ocr-deu \
-        tesseract-ocr-eng \
-        inotify-tools \
-    && apt-get purge --yes --auto-remove
+RUN install_packages \
+    software-properties-common \
+    ocrmypdf \
+    tesseract-ocr \
+    tesseract-ocr-deu \
+    tesseract-ocr-eng \
+    inotify-tools
 
-COPY watch.sh /etc/my_init.d/10_watch.sh
+COPY watch.sh /watch.sh
 
-CMD ["/sbin/my_init"]
+CMD ["/watch.sh"]
