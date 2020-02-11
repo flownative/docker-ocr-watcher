@@ -22,4 +22,5 @@ RUN install_packages \
 
 COPY watch.sh /watch.sh
 
+USER 1001
 CMD ["/watch.sh"]
