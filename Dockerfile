@@ -1,4 +1,4 @@
-FROM flownative/base:2
+FROM bitnami/minideb:buster
 MAINTAINER Robert Lemke <robert@flownative.com>
 
 ARG BUILD_DATE
@@ -22,5 +22,5 @@ RUN install_packages \
 
 COPY watch.sh /watch.sh
 
-USER 1001
+USER 1000
 CMD ["/watch.sh"]
