@@ -23,8 +23,9 @@ do
                 targetFilename=${filenamePrefix}-${documentNumber}.pdf
             fi
 
+            chmod 666 "/tmp/ocr/${filename}.pdf"
             mv -f "/tmp/ocr/${filename}.pdf" "/data/output/${targetFilename}"
-            mv "${pathAndFilename}" "/data/input/--${filename}"
+            rm "${pathAndFilename}"
             rm "/tmp/ocr/${filename}.txt"
 
             echo "Finished ocr, result is ${targetFilename}"
