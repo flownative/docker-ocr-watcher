@@ -32,7 +32,7 @@ do
                 echo "Finished ocr, result is ${targetFilename}"
             else
                 echo "Text recognition failed, copying file without OCR to ${targetFilename}"
-                mv -f "${pathAndFilename}.pdf" "/data/output/${targetFilename}"
+                mv -f "${pathAndFilename}" "/data/output/${targetFilename}"
             fi
         done
     sleep 5
