@@ -26,13 +26,13 @@ do
 
                 chmod 666 "/tmp/ocr/${filename}.pdf"
                 mv -f "/tmp/ocr/${filename}.pdf" "/data/output/${targetFilename}"
-                rm "${pathAndFilename}"
+                mv -f "${pathAndFilename}" "/data/output/original-${targetFilename}"
                 rm "/tmp/ocr/${filename}.txt"
 
                 echo "Finished ocr, result is ${targetFilename}"
             else
                 echo "Text recognition failed, copying file without OCR to ${targetFilename}"
-                mv -f "${pathAndFilename}" "/data/output/${targetFilename}"
+                mv -f "${pathAndFilename}" "/data/output/original-${targetFilename}"
             fi
         done
     sleep 5
