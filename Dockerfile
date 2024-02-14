@@ -1,4 +1,4 @@
-FROM bitnami/minideb:buster
+FROM bitnami/minideb:bookworm
 MAINTAINER Robert Lemke <robert@flownative.com>
 
 ARG BUILD_DATE
